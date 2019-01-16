@@ -54,7 +54,7 @@ namespace logrot
 
             try
             {
-                output = Open(parameters);
+                output = Open(parameters, rotation);
 
                 while ((line = Console.In.ReadLine()) != null)
                 {
@@ -69,7 +69,7 @@ namespace logrot
 
                         Rotate(parameters, rotation);
 
-                        output = Open(parameters);
+                        output = Open(parameters, rotation);
                     }
 
                     if (logstart.IsMatch(line))
@@ -111,10 +111,15 @@ namespace logrot
             Parser.Default.ParseArguments<Parameters>(args).WithParsed(Execute);
         }
 
-        static StreamWriter Open(Parameters parameters, Encoding encoding = null)
+        static StreamWriter Open(Parameters parameters, RotationInfo ri, Encoding encoding = null)
         {
+            if (!Directory.Exists(ri.Directory))
+            {
+                Directory.CreateDirectory(ri.Directory);
+            }
+
             return new StreamWriter(
-                Path.GetFullPath(parameters.Destination),
+                ri.FullPath,
                 true,
                 encoding ?? Console.InputEncoding,
                 (int)parameters.BufferSize
