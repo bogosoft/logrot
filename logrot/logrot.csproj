@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyVersion>0.9.0</AssemblyVersion>
+		<AssemblyName>logrot</AssemblyName>
+		<Authors>Clayton Roth</Authors>
+		<Description>A cross-platform, framework-less command line utility for rotating logs.</Description>
+		<FileVersion>0.9.0</FileVersion>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+		<Version>0.9.0</Version>
+	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="CommandLineParser" Version="2.4.3" />
+	</ItemGroup>
+</Project>
